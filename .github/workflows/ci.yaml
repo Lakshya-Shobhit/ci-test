@@ -2,6 +2,8 @@ name: CI Work Flow
 
 on:
   push:
+  branches:
+      - master
   pull_request:
 
 jobs:
