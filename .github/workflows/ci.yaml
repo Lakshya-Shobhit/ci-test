@@ -6,7 +6,7 @@ on:
 
 jobs:
   linting:
-    runs-on: matrix.os
+    runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
@@ -22,7 +22,7 @@ jobs:
       - name: setup python
         uses: actions/setup-python@v2
         with:
-          python-version: matrix.python_version
+          python-version: ${{ matrix.python_version }}
 
       - name: install flake8
         run: |
