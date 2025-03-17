@@ -13,7 +13,7 @@ jobs:
         os: [ubuntu-latest, windows-latest]
         python_version: ['3.9', '3.8']
       fail-fast: false
-      max-parallel: 2
+      max-parallel: 8
 
     steps:
       - name: code checkout
@@ -32,4 +32,21 @@ jobs:
       - name: run flake8
         run: |
           flake8 app.py
-    
+  
+  testing:
+    needs: linting
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v3
+
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: run test case
+        run: |
+        python -m unittest discover
+
